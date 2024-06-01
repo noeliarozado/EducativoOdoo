@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <record id="Coordinador" model="res.groups">
+            <field name="name">Coordinador</field>
+        </record>
+        <record id="Profesor" model="res.groups">
+            <field name="name">Profesor</field>
+        </record>
+    </data>
+</odoo>

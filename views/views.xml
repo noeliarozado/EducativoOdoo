@@ -1,0 +1,114 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="fct.alumno_tree"> 
+      <field name="name">fct.alumno.tree</field> 
+      <field name="model">fct.alumno</field> 
+      <field name="arch" type="xml">
+        <tree> 
+          <field name="name"/> 
+          <field name="nombre"/> 
+          <field name="apellidos"/> 
+          <field name="fechanacimiento"/> 
+          <field name="cicloformativo"/> 
+          <field name="notamedia"/> 
+          <field name="notmed"/> 
+          <field name="empresa"/> 
+        </tree>
+      </field> 
+    </record> 
+
+    <record model="ir.ui.view" id="fct.alumno_form"> 
+      <field name="name">fct.alumno.form</field> 
+      <field name="model">fct.alumno</field> 
+      <field name="arch" type="xml"> 
+        <form> 
+          <group colspan="2" col="2"> 
+            <field name="name"/> 
+            <field name="nombre"/> 
+            <field name="apellidos"/> 
+            <field name="fechanacimiento"/> 
+            <field name="cicloformativo"/> 
+            <field name="notamedia"/> 
+            <field name="notmed"/> 
+            <field name="empresa"/> 
+          </group> 
+        </form> 
+      </field> 
+    </record> 
+
+    <record model="ir.ui.view" id="fct.empresa_tree"> 
+      <field name="name">fct.empresa.tree</field> 
+      <field name="model">fct.empresa</field> 
+      <field name="arch" type="xml"> 
+        <tree> 
+          <field name="name"/> 
+          <field name="direccion"/>
+          <field name="listadealumnos">
+            <tree>
+              <field name="name"/> 
+              <field name="nombre"/> 
+              <field name="apellidos"/> 
+              <field name="fechanacimiento"/> 
+              <field name="cicloformativo"/>
+              <field name="notamedia"/> 
+            </tree>
+          </field>
+        </tree>
+      </field>
+    </record> 
+
+    <record model="ir.ui.view" id="fct.empresa_form"> 
+      <field name="name">fct.empresa.form</field> 
+      <field name="model">fct.empresa</field> 
+      <field name="arch" type="xml"> 
+        <form> 
+          <group colspan="2" col="2"> 
+            <field name="name"/> 
+            <field name="direccion"/>
+            <field name="listadealumnos">
+              <tree>
+                <field name="name"/> 
+                <field name="nombre"/> 
+                <field name="apellidos"/> 
+                <field name="fechanacimiento"/> 
+                <field name="cicloformativo"/>
+                <field name="notamedia"/> 
+              </tree>
+            </field>
+          </group> 
+        </form> 
+      </field> 
+    </record>
+    
+    <record model="ir.ui.view" id="fct.alumno_search"> 
+      <field name="name">fct.alumno.search</field> 
+      <field name="model">fct.alumno</field> 
+      <field name="arch" type="xml"> 
+        <search> 
+          <field name="nombre"/> 
+          <field name="apellidos"/> 
+          <filter name="Nota media mayor que 9" domain="[('notamedia','&gt;',9)]" />
+        </search> 
+      </field> 
+    </record>    
+
+    <record model="ir.actions.act_window" id="fct.alumno_action_window"> 
+      <field name="name">Alumnos</field> 
+      <field name="res_model">fct.alumno</field> 
+      <field name="view_mode">tree,form</field> 
+    </record> 
+    
+    <record model="ir.actions.act_window" id="fct.empresa_action_window"> 
+      <field name="name">Empresas</field> 
+      <field name="res_model">fct.empresa</field> 
+      <field name="view_mode">tree,form</field> 
+    </record> 
+    
+    <menuitem name="Centro de estudios" id="fct.menu_root" groups="Coordinador,Profesor"/>
+    
+    <menuitem name="Alumnos" id="fct.alumno_menu" parent="fct.menu_root" action="fct.alumno_action_window" groups="Coordinador,Profesor"/> 
+    <menuitem name="Empresas" id="fct.empresa_menu" parent="fct.menu_root" action="fct.empresa_action_window" groups="Coordinador,Profesor"/> 
+    
+  </data> 
+</odoo>
